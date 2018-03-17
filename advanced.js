@@ -1,9 +1,9 @@
 (function () {
 
-  var input,
-      submit,
-      message,
-      advancedDiv,
+  var input = document.querySelector("#axela-input"),
+      submit = document.querySelector("#axela-submit"),
+      message = document.querySelector("#axela-message"),
+      advancedDiv = document.querySelector("#advanced"),
       errorText = "I don't understand you.",
       dunnoText = "I wasn't programmed to know that.",
       picture = null,
@@ -48,6 +48,41 @@
       the message element to errorText.
    */
 
+  function processInput() {
+      if(advancedDiv.contains(picture)){
+        picture.removeChild();
+      }
+      var words = input.value.toLowerCase().trim().split(" ");
+      input.value = '';
+      if(words.length == 1){
+        if(greetings.indexOf(words[0]) > -1){
+           message.innerHTML = 'Greetings!';
+        }
+        else{
+            message.innerHTML = errorText
+        }
+      } else if(words.length == 2){
+              switch(words[0]){
+                case ("who"):
+                who(words[1]);
+                break;
+                case ("what"):
+                what(words[1]);
+                case ("where"):
+                where(words[1]);
+                break;
+                case ("tell"):
+                tell(words[1]);
+                break;
+                case ("show"):
+                show(words[1]);
+                break;
+                default:
+                message.innerHTML = errorText;
+            }
+       }
+    }
+
   /*
    * who(word)
    * This function sets the innerHTML of the message element to specific text,
@@ -62,7 +97,75 @@
      dunnoText, NOT errorText (since it's not an error per se, Axela just
      doesn't know what they're referring to.)
    */
+function who(word){
+  switch (word){
+    case'you':
+    message.innerHTML = "I'm Axela, who is you?"
+    break;
+    case 'Jessica':
+    message.innerHTML = "I don't know you tell me."
+    break;
+    case'Bianca':
+    message.innerHTML = "I mean only the best person in the world DUHHH"
+    break;
+    default:
+    message.innerHTML = dunnoText;
+  }
+  }
+  function what(word){
+    switch (word){
+      case'works':
+      message.innerHTML = "Obviously not you, have you seen yourself?"
+      break;
+      case 'sup':
+      message.innerHTML = "The sky ** slaps knee ** "
+      break;
+      case'doyoumean':
+      message.innerHTML = "OOO OOOOO when you wanna say yes but you nod ur head no"
+      break;
+      default:
+      message.innerHTML = dunnoText;
+    }
+  }
+    function where(word){
+      switch (word){
+        case'?':
+        message.innerHTML = "Do you know de way?"
+        break;
+        case 'McDonalds':
+        message.innerHTML = "So you're just going to pretend you don't have a GPS on your phone?"
+        break;
+        case'waldo':
+        message.innerHTML = "I'm sorry not even I know the answer to that ask Alexa"
+        break;
+        default:
+        message.innerHTML = dunnoText;
+      }
+  }
 
+  function show(word){
+    switch(word){
+      case 'dog':
+      message.innerHTML = 'Here is dog';
+      picture = document.createElement('img');
+      picture.src = 'img/dog.png';
+      advancedDiv.appendChild(picture);
+      break;
+      case 'butterfly':
+      message.innerHTML = ' Butter + fly :)'
+      picture = document.createElement('img');
+      picture.src = 'img/butterfly.png';
+      advancedDiv.appendChild(picture);
+      break;
+      case 'waldo':
+      message.innerHTML = 'I gotta find him first '
+      picture = document.createElement('img');
+      picture.src = 'img/waldo.png';
+      advancedDiv.appendChild(picture);
+      break;
+
+    }
+  }
   /*
    * what(word)
    * See above.

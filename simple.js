@@ -16,7 +16,6 @@
         "42. Duh.",
         "What do you call a swindler going down some stairs? <br>Condescending. Ha!"];
 
-        console.log(input);
 
 
   // Add event listeners to text input and submit button below
@@ -47,11 +46,18 @@
    *  responses array).
    */
 
-
 function processInput(){
   let currentInput = input.value;
   input.value = '';
-  alert(currentInput);
+
+  console.log(validInputs.indexOf(currentInput));
+
+  if(validInputs.indexOf(currentInput) == -1) {
+    message.innerHTML = "Sorry, I don't understand you";
+  }else{
+    message.innerHTML = responses[validInputs.indexOf(currentInput)]
+
+  }
 }
 
 })();
