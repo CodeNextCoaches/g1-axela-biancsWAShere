@@ -10,3 +10,19 @@ body div {
   margin: 0 auto;
   padding: 10px;
 }
+/* Clear floats after the columns */
+.row:after {
+    display: table;
+    clear: both;
+
+}
+.header-text{
+  font-family: 'League Script'; font-size: 30px;
+  font-weight: bold;
+
+}
+
+body {
+color: white;
+
+}
